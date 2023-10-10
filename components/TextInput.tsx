@@ -23,6 +23,7 @@ const TextInput = ({
       <TextField
         {...field}
         {...rest}
+        value={field.value || ''}
         error={!!fieldState.error}
         helperText={fieldState.error ? fieldState.error.message : null}
       />
