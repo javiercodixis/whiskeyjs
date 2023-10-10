@@ -2,21 +2,22 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import InputText from '@/components/InputText';
+import InputText from '@/components/TextInput';
+import { FormValues } from '@/types';
 
-type FormValues = {
-  firstName: string;
-  lastName: string;
-  address: string;
-  phoneNumber: string;
-};
-
-export default function Page() {
-  const { handleSubmit, control } = useForm<FormValues>();
-
+const Page = () => {
+  const { handleSubmit, control } = useForm<FormValues>({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      address: '',
+      phoneNumber: ''
+    }
+  });
+  
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
@@ -35,6 +36,7 @@ export default function Page() {
       }}
     >
       <InputText
+        fullWidth
         name="firstName"
         label="First Name"
         control={control}
@@ -47,6 +49,7 @@ export default function Page() {
         }}
       />
       <InputText
+        fullWidth
         name="lastName"
         label="Last Name"
         control={control}
@@ -59,6 +62,7 @@ export default function Page() {
         }}
       />
       <InputText
+        fullWidth
         name="address"
         label="Address"
         control={control}
@@ -73,6 +77,7 @@ export default function Page() {
         }}
       />
       <InputText
+        fullWidth
         name="phoneNumber"
         label="Phone Number"
         control={control}
@@ -94,3 +99,5 @@ export default function Page() {
     </Box>
   );
 }
+
+export default Page;
