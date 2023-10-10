@@ -12,7 +12,7 @@ interface InputProps extends React.ComponentProps<typeof TextField> {
   rules?: object;
 }
 
-const TextInput = ({ name, label, control, rules, fullWidth, ...rest }: InputProps) => (
+const TextInput = ({ name, label, control, rules, fullWidth }: InputProps) => (
   <Controller
     name={name}
     control={control}
@@ -21,7 +21,6 @@ const TextInput = ({ name, label, control, rules, fullWidth, ...rest }: InputPro
       <Box>
         <TextField
           {...field}
-          {...rest}
           fullWidth={fullWidth}
           label={label} 
           error={!!fieldState.error}
