@@ -40,7 +40,7 @@ const Page = () => {
         name="firstName"
         label="First Name"
         control={control}
-        required
+        rules={{ required: 'First Name is required' }}
       />
       <Divider
         sx={{
@@ -53,7 +53,7 @@ const Page = () => {
         name="lastName"
         label="Last Name"
         control={control}
-        required
+        rules={{ required: 'Last Name is required' }}
       />
       <Divider
         sx={{
@@ -68,7 +68,7 @@ const Page = () => {
         control={control}
         multiline
         rows={4}
-        required
+        rules={{ required: 'Address is required' }}
       />
       <Divider
         sx={{
@@ -81,7 +81,7 @@ const Page = () => {
         name="phoneNumber"
         label="Phone Number"
         control={control}
-        required
+        rules={{ required: 'Phone Number is required' }}
       />
       <Divider
         sx={{
