@@ -1,6 +1,10 @@
 export type FormValues = {
   firstName: string;
   lastName: string;
-  address: string;
+  email: string;
   phoneNumber: string;
+  whiskey: string;
+  quantity: number;
+  address: string;
+  ageVerified: boolean;
 };

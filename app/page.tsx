@@ -5,16 +5,22 @@ import { useForm } from 'react-hook-form';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import InputText from '@/components/TextInput';
+import TextInput from '@/components/TextInput';
 import { FormValues } from '@/types';
+
+const whiskeyOptions = ['Whiskey Option 1', 'Whiskey Option 2', 'Whiskey Option 3'];
 
 const Page = () => {
   const { handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
       firstName: '',
       lastName: '',
+      email: '',
+      phoneNumber: '',
+      whiskey: '',
+      quantity: 1,
       address: '',
-      phoneNumber: ''
+      ageVerified: false
     }
   });
   
@@ -35,33 +41,41 @@ const Page = () => {
         margin: '0 auto'
       }}
     >
-      <InputText
-        fullWidth
-        name="firstName"
-        label="First Name"
-        control={control}
-        rules={{ required: 'First Name is required' }}
-      />
-      <Divider
-        sx={{
-          my: 1,
-          borderBottomWidth: '2px',
-        }}
-      />
-      <InputText
-        fullWidth
-        name="lastName"
-        label="Last Name"
-        control={control}
-        rules={{ required: 'Last Name is required' }}
-      />
-      <Divider
-        sx={{
-          my: 1,
-          borderBottomWidth: '2px',
-        }}
-      />
-      <InputText
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between' }}
+      >
+        <TextInput
+          name="firstName"
+          label="First Name"
+          control={control}
+          rules={{ required: 'First Name is required' }}
+        />
+        <TextInput
+          name="lastName"
+          label="Last Name"
+          control={control}
+          rules={{ required: 'Last Name is required' }}
+        />
+      </Box>
+      <Divider sx={{ my: 1, borderBottomWidth: '2px' }} />
+      <Box
+        sx={{ display: 'flex', justifyContent: 'space-between' }}
+      >
+        <TextInput
+          name="email"
+          label="Email"
+          control={control}
+          rules={{ required: 'Email is required' }}
+        />
+        <TextInput
+          name="phoneNumber"
+          label="Phone Number"
+          control={control}
+          rules={{ required: 'Phone Number is required' }}
+        />
+      </Box>
+      <Divider sx={{ my: 1, borderBottomWidth: '2px' }} />
+      <TextInput
         fullWidth
         name="address"
         label="Address"
@@ -70,25 +84,7 @@ const Page = () => {
         rows={4}
         rules={{ required: 'Address is required' }}
       />
-      <Divider
-        sx={{
-          my: 1,
-          borderBottomWidth: '2px',
-        }}
-      />
-      <InputText
-        fullWidth
-        name="phoneNumber"
-        label="Phone Number"
-        control={control}
-        rules={{ required: 'Phone Number is required' }}
-      />
-      <Divider
-        sx={{
-          my: 1,
-          borderBottomWidth: '2px',
-        }}
-      />
+      <Divider sx={{ my: 1, borderBottomWidth: '2px' }} />
       <Button
         type="submit"
         variant="contained"

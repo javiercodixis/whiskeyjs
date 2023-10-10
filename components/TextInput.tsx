@@ -1,32 +1,34 @@
 import React from 'react';
 import { Controller, Control } from 'react-hook-form';
-import Box from '@mui/material/Box';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { FormValues } from '@/types';
 
-type InputProps = TextFieldProps & {
+type TextInputProps = TextFieldProps &  {
   name: keyof FormValues;
+  label: string;
   control: Control<FormValues>;
   rules?: object;
+  fullWidth?: boolean;
+  halfWidth?: boolean;
 }
 
-const TextInput = ({ name, label, control, rules, fullWidth }: InputProps) => (
-  <Controller
-    name={name}
-    control={control}
-    rules={rules}
-    render={({ field, fieldState }) => (
-      <Box>
+const TextInput: React.FC<TextInputProps> = ({ name, label, control, rules, fullWidth, halfWidth }) => {
+  return (
+    <Controller
+      name={name}
+      control={control}
+      rules={rules}
+      render={({ field, fieldState }) => (
         <TextField
           {...field}
-          fullWidth={fullWidth}
+          fullWidth={fullWidth || !halfWidth}
           label={label} 
           error={!!fieldState.error}
           helperText={fieldState.error ? fieldState.error.message : null}
         />
-      </Box>
-    )}
-  />
-);
+      )}
+    />
+  );
+};
 
 export default TextInput;
