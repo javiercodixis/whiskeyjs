@@ -22,10 +22,14 @@ const TextInput = ({
     render={({ field, fieldState }) => (
       <TextField
         {...field}
-        {...rest}
-        value={field.value || ''}
+        value={field.value ?? ''}
         error={!!fieldState.error}
         helperText={fieldState.error ? fieldState.error.message : null}
+        onChange={(e) => {
+          const value = e.target.value;
+          field.onChange(value === '' ? null : (value || 0));
+        }}
+        {...rest}
       />
     )}
   />
