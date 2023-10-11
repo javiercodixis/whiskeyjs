@@ -7,7 +7,10 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import TextInput from '@/components/TextInput';
+import SelectInput from '@/components/SelectInput';
 import { FormValues } from '@/types';
+
+const whiskeyOptions = ['Whiskey 1', 'Whiskey 2', 'Whiskey 3'];
 
 const Page = () => {
   const { handleSubmit, control } = useForm<FormValues>();
@@ -64,6 +67,15 @@ const Page = () => {
             fullWidth
             control={control}
             rules={{ required: 'Phone Number is required' }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <SelectInput
+            name="whiskey"
+            label="Whiskey"
+            control={control}
+            options={whiskeyOptions}
+            rules={{ required: 'To select a Whiskey is required' }}
           />
         </Grid>
         <Grid item xs={12}>
