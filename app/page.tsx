@@ -12,7 +12,6 @@ import { FormValues } from '@/types';
 const Page = () => {
   const { handleSubmit, control } = useForm<FormValues>();
 
-
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
@@ -23,7 +22,12 @@ const Page = () => {
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"
-      sx={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '50%',
+        margin: '0 auto',
+      }}
     >
       <Grid container spacing={2}>
         <Grid item xs={6}>
