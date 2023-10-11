@@ -1,75 +1,89 @@
 'use client';
 
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { Select, MenuItem, TextField, FormControl, InputLabel, Button, Box, Checkbox, FormControlLabel } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import TextInput from '@/components/TextInput';
+import { FormValues } from '@/types';
 
-type FormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  whiskey: string;
-  quantity: number;
-  address: string;
-  ageVerified: boolean;
-};
-
-export default function WhiskeyPurchaseForm() {
-  const { register, handleSubmit, control } = useForm<FormValues>({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      whiskey: 'Whiskey Option 1',
-      quantity: 1,
-      address: '',
-      ageVerified: false,
-    },
-  });
-
-  const whiskeyOptions = ['Whiskey Option 1', 'Whiskey Option 2', 'Whiskey Option 3'];
+const Page = () => {
+  const { handleSubmit, control } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" sx={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }}>
-      <TextField {...register('firstName')} label="First Name" required variant="outlined" sx={{ marginBottom: 2, width: '50%' }} />
-      <TextField {...register('lastName')} label="Last Name" required variant="outlined" sx={{ marginBottom: 2, width: '50%' }} />
-      <TextField {...register('email')} label="Email" required variant="outlined" sx={{ marginBottom: 2, width: '50%' }} />
-      <TextField {...register('phone')} label="Phone" required variant="outlined" sx={{ marginBottom: 2, width: '50%' }} />
-
-      <FormControl variant="outlined" sx={{ marginBottom: 2, width: '50%' }}>
-        <InputLabel id="whiskey-label">Whiskey</InputLabel>
-        <Controller
-          name="whiskey"
-          control={control}
-          defaultValue={whiskeyOptions[0]}
-          render={({ field }) => (
-            <Select labelId="whiskey-label" label="Whiskey" {...field}>
-              {whiskeyOptions.map(option => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          )}
-        />
-      </FormControl>
-
-      <TextField {...register('quantity')} label="Quantity" required variant="outlined" type="number" sx={{ marginBottom: 2, width: '50%' }} />
-      <TextField {...register('address')} label="Address" required multiline rows={4} variant="outlined" sx={{ marginBottom: 2, width: '100%' }} />
-      
-      <FormControlLabel
-        control={<Checkbox {...register('ageVerified')} />}
-        label="I verify that I am over 21 years of age"
-        sx={{ marginBottom: 2 }}
-      />
-      
-      <Button type="submit" variant="contained" color="primary">Purchase</Button>
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      autoComplete="off"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '50%',
+        margin: '0 auto',
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <TextInput
+            name="firstName"
+            label="First Name"
+            fullWidth
+            control={control}
+            rules={{ required: 'First Name is required' }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextInput
+            name="lastName"
+            label="Last Name"
+            fullWidth
+            control={control}
+            rules={{ required: 'Last Name is required' }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextInput
+            name="email"
+            label="Email"
+            fullWidth
+            control={control}
+            rules={{ required: 'Email is required' }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextInput
+            name="phoneNumber"
+            label="Phone Number"
+            fullWidth
+            control={control}
+            rules={{ required: 'Phone Number is required' }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextInput
+            name="address"
+            label="Address"
+            fullWidth
+            control={control}
+            multiline
+            rows={4}
+            rules={{ required: 'Address is required' }}
+          />
+        </Grid>
+      </Grid>
+      <Divider sx={{ my: 1, borderBottomWidth: '2px' }} />
+      <Button type="submit" variant="contained" color="primary">
+        Submit
+      </Button>
     </Box>
   );
 }
+
+export default Page;
