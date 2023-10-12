@@ -8,3 +8,10 @@ export type FormValues = {
   address: string;
   ageVerified: boolean;
 };
+
+type Option = {
+  value: string;
+  label: string;
+};
+
+export type Options = Array<Option>;

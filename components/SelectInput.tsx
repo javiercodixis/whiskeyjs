@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controller, Control } from 'react-hook-form';
 import InputLabel from '@mui/material/InputLabel';
-import { FormValues } from '@/types';
+import { FormValues, Options } from '@/types';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectProps } from '@mui/material/Select';
@@ -11,11 +11,11 @@ type SelectInputProps = SelectProps & {
   name: keyof FormValues;
   control: Control<FormValues>;
   defaultValue?: string;
-  label: string;
-  options: string[];
+  options: Options;
   rules?: object;
   placeholder?: string;
 };
+
 
 function SelectInput({
   name,
@@ -23,7 +23,6 @@ function SelectInput({
   label,
   options,
   rules,
-  defaultValue,
   ...rest
 }: SelectInputProps) {
 
@@ -31,7 +30,6 @@ function SelectInput({
     <Controller
       name={name}
       control={control}
-      defaultValue={defaultValue}
       rules={rules}
       render={({ field, fieldState }) => (
         <FormControl fullWidth error={fieldState.invalid}>
@@ -46,8 +44,8 @@ function SelectInput({
             {...rest}
           >
             {options.map(option => (
-              <MenuItem key={option} value={option}>
-                {option}
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
               </MenuItem>
             ))}
           </Select>

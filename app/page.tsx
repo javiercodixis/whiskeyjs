@@ -8,9 +8,13 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import TextInput from '@/components/TextInput';
 import SelectInput from '@/components/SelectInput';
-import { FormValues } from '@/types';
+import { FormValues, Options } from '@/types';
 
-const whiskeyOptions = ['Whiskey 1', 'Whiskey 2', 'Whiskey 3'];
+const whiskeyOptions: Options = [
+  { value: 'whiskey1', label: 'Whiskey 1' },
+  { value: 'whiskey2', label: 'Whiskey 2' },
+  { value: 'whiskey3', label: 'Whiskey 3' }
+];
 
 const Page = () => {
   const { handleSubmit, control } = useForm<FormValues>();
