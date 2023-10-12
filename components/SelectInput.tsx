@@ -1,44 +1,49 @@
 import React from 'react';
 import { Controller, Control } from 'react-hook-form';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { FormValues } from '@/types';
 import InputLabel from '@mui/material/InputLabel';
+import { FormValues } from '@/types';
 import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectProps } from '@mui/material/Select';
+import FormHelperText from '@mui/material/FormHelperText';
 
-type SelectInputProps = {
+type SelectInputProps = SelectProps & {
   name: keyof FormValues;
   control: Control<FormValues>;
+  defaultValue?: string;
   label: string;
   options: string[];
   rules?: object;
+  placeholder?: string;
 };
 
-function SelectInput(props: SelectInputProps) {
-  const {
-    name,
-    control,
-    label,
-    options,
-    rules
-  } = props;
+function SelectInput({
+  name,
+  control,
+  label,
+  options,
+  rules,
+  defaultValue,
+  ...rest
+}: SelectInputProps) {
 
   return (
     <Controller
       name={name}
       control={control}
-      defaultValue=""
+      defaultValue={defaultValue}
       rules={rules}
       render={({ field, fieldState }) => (
-        <FormControl fullWidth error={!!fieldState.error}>
-          <InputLabel shrink>{label}</InputLabel>
-          <Select
+        <FormControl fullWidth error={fieldState.invalid}>
+          <InputLabel id={`${name}-label`}>{label}</InputLabel>
+          <Select 
             {...field}
             displayEmpty
-            value={field.value || ''}
-            renderValue={
-              selected => selected || <em>Choose a whiskey</em>
-            }
+            labelId={`${name}-label`}
+            id={`${name}-select`}
+            label={label}
+            value={field.value ?? ''}
+            {...rest}
           >
             {options.map(option => (
               <MenuItem key={option} value={option}>
@@ -46,7 +51,9 @@ function SelectInput(props: SelectInputProps) {
               </MenuItem>
             ))}
           </Select>
-          {fieldState.error && <p>{fieldState.error.message}</p>}
+          {fieldState.error && 
+            <FormHelperText>{fieldState.error.message}</FormHelperText>
+          }
         </FormControl>
       )}
     />
