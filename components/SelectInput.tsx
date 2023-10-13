@@ -10,10 +10,8 @@ import FormHelperText from '@mui/material/FormHelperText';
 type SelectInputProps = SelectProps & {
   name: keyof FormValues;
   control: Control<FormValues>;
-  defaultValue?: string;
   options: Options;
   rules?: object;
-  placeholder?: string;
 };
 
 
