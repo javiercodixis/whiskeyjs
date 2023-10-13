@@ -1,15 +1,15 @@
 import React from 'react';
 import { Controller, Control } from 'react-hook-form';
 import InputLabel from '@mui/material/InputLabel';
-import { FormValues, Options } from '@/types';
+import { Options } from '@/types';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectProps } from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 
 type SelectInputProps = SelectProps & {
-  name: keyof FormValues;
-  control: Control<FormValues>;
+  name: string;
+  control: Control;
   options: Options;
   rules?: object;
 };

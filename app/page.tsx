@@ -17,9 +17,9 @@ const whiskeyOptions: Options = [
 ];
 
 const Page = () => {
-  const { handleSubmit, control } = useForm<FormValues>();
+  const { handleSubmit, control } = useForm();
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: any) => {
     console.log(data);
   };
 
