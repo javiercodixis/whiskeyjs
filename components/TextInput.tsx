@@ -1,11 +1,10 @@
 import React from 'react';
 import { Controller, Control } from 'react-hook-form';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
-import { FormValues } from '@/types';
 
 type TextInputProps = TextFieldProps & {
-  name: keyof FormValues;
-  control: Control<FormValues>;
+  name: string;
+  control: Control;
   rules?: object;
 };
 
