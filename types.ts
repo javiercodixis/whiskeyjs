@@ -4,9 +4,8 @@ export type FormValues = {
   email: string;
   phoneNumber: string;
   whiskey: string;
-  quantity: number;
+  whiskeyQuantity: 1,
   address: string;
-  ageVerified: boolean;
 };
 
 type Option = {
