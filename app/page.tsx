@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import TextInput from '@/components/TextInput';
 import SelectInput from '@/components/SelectInput';
-import NumberInput from '@/components/NumberInput';
 import { FormValues, Options } from '@/types';
 
 const whiskeyOptions: Options = [
@@ -19,10 +18,6 @@ const whiskeyOptions: Options = [
 
 const Page = () => {
   const { handleSubmit, control } = useForm();
-
-  const noLeadingZeros = (value: any) => !/^0[0-9]+/.test(value) || 'Invalid number format';
-  const isPositive = (value: any) => parseFloat(value) > 0 || 'Value must be positive';
-  const noDecimals = (value: any) => Number.isInteger(parseFloat(value)) || 'No decimals allowed';
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -85,21 +80,6 @@ const Page = () => {
             control={control}
             options={whiskeyOptions}
             rules={{ required: 'To select a Whiskey is required' }}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <NumberInput
-            name="whiskeyQuantity"
-            label="Whiskey Quantity"
-            control={control}
-            defaultValue={1}
-            rules={{
-              validate: {
-                noLeadingZeros,
-                isPositive,
-                noDecimals,
-              }
-            }}
           />
         </Grid>
         <Grid item xs={12}>
