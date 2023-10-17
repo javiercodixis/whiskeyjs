@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import TextInput from '@/components/TextInput';
 import SelectInput from '@/components/SelectInput';
-import NumberInput from '@/components/InputNumber';
+import NumberInput from '@/components/NumberInput';
 import { FormValues, Options } from '@/types';
 
 const whiskeyOptions: Options = [
@@ -84,12 +84,13 @@ const Page = () => {
           />
         </Grid>
         <Grid item xs={6}>
-          <NumberInput
-            name="whiskeyQuantity"
-            label="Whiskey Quantity"
-            control={control}
-            rules={{ required: 'Whiskey Quantity is required' }}
-          />
+        <NumberInput
+          name="whiskeyQuantity"
+          label="Whiskey Quantity"
+          control={control}
+          defaultValue={1}
+          allowDecimals={true}
+        />
         </Grid>
         <Grid item xs={12}>
           <TextInput

@@ -4,7 +4,6 @@ export type FormValues = {
   email: string;
   phoneNumber: string;
   whiskey: string;
-  whiskeyQuantity: 1,
   address: string;
 };
 
