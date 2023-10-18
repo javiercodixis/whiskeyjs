@@ -47,7 +47,6 @@ const SelectInput = ({
         </Select>
         {fieldState.error
           && <FormHelperText>{fieldState.error.message}</FormHelperText>}
-        ;
       </FormControl>
     )}
   />

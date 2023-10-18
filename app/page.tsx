@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import BooleanInput from '@/components/BooleanInput';
+import DateInput from '@/components/DateInput'; // Adjust the path accordingly
 import NumberInput from '@/components/NumberInput';
 import SelectInput from '@/components/SelectInput';
 import TextInput from '@/components/TextInput';
@@ -20,6 +21,7 @@ const whiskeyOptions: Options = [
 
 const Page = () => {
   const { handleSubmit, control } = useForm<FormValues>();
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const noLeadingZeros = (value: string): boolean | string => !/^0[0-9]+/.test(value) || 'Invalid number format';
 
@@ -132,8 +134,10 @@ const Page = () => {
             label="I am over 18 years old"
             control={control}
             defaultValue={false}
+            onChange={(e) => setIsCheckboxChecked(e.target.checked)}
             rules={{ required: 'You must verify your age to proceed' }}
           />
+          {isCheckboxChecked && <DateInput name="deliveryDate" control={control} label="Date of Delivery" />}
         </Grid>
         <Grid item xs={12}>
           <TextInput
