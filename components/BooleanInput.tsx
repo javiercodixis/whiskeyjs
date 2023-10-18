@@ -18,35 +18,33 @@ const BooleanInput = ({
   label,
   defaultValue,
   ...rest
-}: BooleanInputProps) => {
-  return (
-    <Controller
-      name={name}
-      control={control}
-      defaultValue={defaultValue}
-      rules={rules}
-      render={({ field, fieldState }) => (
-        <>
-          <FormControlLabel
-            label={label}
-            control={
-              <Checkbox
-                {...field}
-                checked={field.value}
-                color="primary"
-                {...rest}
-              />
-            }
-          />
-          {fieldState.error && (
-            <FormHelperText error>
-              {fieldState.error.message}
-            </FormHelperText>
+}: BooleanInputProps) => (
+  <Controller
+    name={name}
+    control={control}
+    defaultValue={defaultValue}
+    rules={rules}
+    render={({ field, fieldState }) => (
+      <>
+        <FormControlLabel
+          label={label}
+          control={(
+            <Checkbox
+              {...field}
+              checked={field.value}
+              color="primary"
+              {...rest}
+            />
           )}
-        </>
-      )}
-    />
-  );
-};
+        />
+        {fieldState.error && (
+          <FormHelperText error>
+            {fieldState.error.message}
+          </FormHelperText>
+        )}
+      </>
+    )}
+  />
+);
 
 export default BooleanInput;

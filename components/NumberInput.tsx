@@ -14,25 +14,23 @@ const NumberInput = ({
   defaultValue,
   rules,
   ...rest
-}: NumberInputProps) => {
-  return (
-    <Controller
-      name={name}
-      control={control}
-      defaultValue={defaultValue}
-      rules={rules}
-      render={({ field, fieldState }) => (
-        <TextField
-          {...field}
-          type="number"
-          fullWidth
-          error={!!fieldState.error}
-          helperText={fieldState.error ? fieldState.error.message : null}
-          {...rest}
-        />
-      )}
-    />
-  );
-};
+}: NumberInputProps) => (
+  <Controller
+    name={name}
+    control={control}
+    defaultValue={defaultValue}
+    rules={rules}
+    render={({ field, fieldState }) => (
+      <TextField
+        {...field}
+        type="number"
+        fullWidth
+        error={!!fieldState.error}
+        helperText={fieldState.error ? fieldState.error.message : null}
+        {...rest}
+      />
+    )}
+  />
+);
 
 export default NumberInput;

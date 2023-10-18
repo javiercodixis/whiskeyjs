@@ -6,6 +6,7 @@ export type FormValues = {
   whiskey: string;
   address: string;
   whiskeyQuantity: number;
+  ageVerification: boolean;
 };
 
 type Option = {
