@@ -28,4 +28,3 @@ module.exports = {
     'react/no-danger': 'off',
   },
 };
-

@@ -14,46 +14,43 @@ type SelectInputProps = SelectProps & {
   rules?: object;
 };
 
-
-function SelectInput({
+const SelectInput = ({
   name,
   control,
   label,
   options,
   rules,
   ...rest
-}: SelectInputProps) {
+}: SelectInputProps) => (
 
-  return (
-    <Controller
-      name={name}
-      control={control}
-      rules={rules}
-      render={({ field, fieldState }) => (
-        <FormControl fullWidth error={fieldState.invalid}>
-          <InputLabel id={`${name}-label`}>{label}</InputLabel>
-          <Select 
-            {...field}
-            displayEmpty
-            labelId={`${name}-label`}
-            id={`${name}-select`}
-            label={label}
-            value={field.value ?? ''}
-            {...rest}
-          >
-            {options.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-          {fieldState.error && 
-            <FormHelperText>{fieldState.error.message}</FormHelperText>
-          }
-        </FormControl>
-      )}
-    />
-  );
-}
+  <Controller
+    name={name}
+    control={control}
+    rules={rules}
+    render={({ field, fieldState }) => (
+      <FormControl fullWidth error={fieldState.invalid}>
+        <InputLabel id={`${name}-label`}>{label}</InputLabel>
+        <Select
+          {...field}
+          displayEmpty
+          labelId={`${name}-label`}
+          id={`${name}-select`}
+          label={label}
+          value={field.value ?? ''}
+          {...rest}
+        >
+          {options.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+        {fieldState.error
+          && <FormHelperText>{fieldState.error.message}</FormHelperText>}
+        ;
+      </FormControl>
+    )}
+  />
+);
 
 export default SelectInput;

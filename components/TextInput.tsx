@@ -25,7 +25,7 @@ const TextInput = ({
         error={!!fieldState.error}
         helperText={fieldState.error ? fieldState.error.message : null}
         onChange={(e) => {
-          field.onChange(e.target.value === '' ? null :  e.target.value);
+          field.onChange(e.target.value === '' ? null : e.target.value);
         }}
         {...rest}
       />
