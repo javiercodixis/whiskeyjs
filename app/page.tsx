@@ -6,9 +6,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import TextInput from '@/components/TextInput';
-import SelectInput from '@/components/SelectInput';
+import BooleanInput from '@/components/BooleanInput';
 import NumberInput from '@/components/NumberInput';
+import SelectInput from '@/components/SelectInput';
+import TextInput from '@/components/TextInput';
 import { FormValues, Options } from '@/types';
 
 const whiskeyOptions: Options = [
@@ -23,6 +24,17 @@ const Page = () => {
   const noLeadingZeros = (value: any) => !/^0[0-9]+/.test(value) || 'Invalid number format';
   const isPositive = (value: any) => parseFloat(value) > 0 || 'Value must be positive';
   const noDecimals = (value: any) => Number.isInteger(parseFloat(value)) || 'No decimals allowed';
+  const minimumQuantity = (value: number) => {
+    return value >= 3 || "Minimum quantity is 3";
+  }
+  const validateEmail = (value: string) => {
+    const pattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    return pattern.test(value) || "Invalid email address";
+  }
+  const validatePhoneNumber = (value: string) => {
+    const pattern = /^\d+$/;
+    return pattern.test(value) || "Phone number should only contain digits";
+  }  
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -66,7 +78,10 @@ const Page = () => {
             label="Email"
             fullWidth
             control={control}
-            rules={{ required: 'Email is required' }}
+            rules={{ 
+              required: 'Email is required',
+              validate: validateEmail
+            }}
           />
         </Grid>
         <Grid item xs={6}>
@@ -75,7 +90,10 @@ const Page = () => {
             label="Phone Number"
             fullWidth
             control={control}
-            rules={{ required: 'Phone Number is required' }}
+            rules={{ 
+              required: 'Phone Number is required',
+              validate: validatePhoneNumber
+            }}
           />
         </Grid>
         <Grid item xs={6}>
@@ -98,8 +116,18 @@ const Page = () => {
                 noLeadingZeros,
                 isPositive,
                 noDecimals,
+                minimumQuantity,
               }
             }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <BooleanInput
+            name="ageVerification"
+            label="I am over 18 years old"
+            control={control}
+            defaultValue={false}
+            rules={{ required: 'You must verify your age to proceed' }}
           />
         </Grid>
         <Grid item xs={12}>

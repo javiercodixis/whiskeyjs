@@ -5,6 +5,7 @@ export type FormValues = {
   phoneNumber: string;
   whiskey: string;
   address: string;
+  whiskeyQuantity: number;
 };
 
 type Option = {
