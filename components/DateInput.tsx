@@ -11,7 +11,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 type DateInputProps = {
   name: string;
   control: Control;
-  label?: string; // eslint-disable-line
+  label?: string;  // eslint-disable-line
   rules?: object;  // eslint-disable-line
 };
 
@@ -24,21 +24,16 @@ const DateInput = ({
 }: DateInputProps) => {
   const { isSubmitted } = useFormState({ control });
 
+  const errorMessages: { [key: string]: string } = {
+    invalidDate: 'Your date is not valid',
+  };
+
   const getErrorMessage = (fieldValue: string, fieldError: FieldError | undefined) => {
     if (isSubmitted && !fieldValue) {
       return 'A date must be selected';
     }
-    switch (fieldError?.type) {
-      case 'maxDate':
-      case 'minDate':
-        return 'Please select a valid date';
 
-      case 'invalidDate':
-        return 'Your date is not valid';
-
-      default:
-        return '';
-    }
+    return fieldError ? errorMessages[fieldError.type] ?? '' : '';
   };
 
   return (
