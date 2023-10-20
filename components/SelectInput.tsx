@@ -11,7 +11,7 @@ type SelectInputProps = SelectProps & {
   name: string;
   control: Control;
   options: Options;
-  rules?: object;
+  rules?: object; // eslint-disable-line
 };
 
 const SelectInput = ({

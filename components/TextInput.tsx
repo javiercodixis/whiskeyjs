@@ -5,13 +5,13 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 type TextInputProps = TextFieldProps & {
   name: string;
   control: Control;
-  rules?: object;
+  rules?: object; // eslint-disable-line
 };
 
 const TextInput = ({
   name,
   control,
-  rules,
+  rules = {},
   ...rest
 }: TextInputProps) => (
   <Controller
