@@ -14,7 +14,7 @@ type BooleanInputProps = Omit<CheckboxProps, 'defaultValue'> & Pick<FormControlL
 const BooleanInput = ({
   name,
   control,
-  rules,
+  rules = {},
   label,
   defaultValue,
   ...rest

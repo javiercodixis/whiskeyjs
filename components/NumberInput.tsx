@@ -12,7 +12,7 @@ const NumberInput = ({
   name,
   control,
   defaultValue,
-  rules,
+  rules = {},
   ...rest
 }: NumberInputProps) => (
   <Controller
