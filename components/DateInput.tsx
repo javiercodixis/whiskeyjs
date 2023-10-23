@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Controller, Control } from 'react-hook-form';
-import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider, DatePicker, DatePickerProps } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
-type DateInputProps = {
+type DateInputProps = Omit<DatePickerProps<dayjs.Dayjs>, 'value' | 'onChange'> & {
   name: string;
   control: Control;
   label?: string;
   rules?: object;
-  defaultValue?: string;
+  defaultValue?: string | null;
 };
 
 const DateInput = ({
@@ -16,7 +17,7 @@ const DateInput = ({
   control,
   label,
   rules = {},
-  defaultValue = '',
+  defaultValue = null,
   ...rest
 }: DateInputProps) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -28,8 +29,11 @@ const DateInput = ({
       render={({ field, fieldState }) => (
         <DatePicker
           label={label}
-          value={field.value || defaultValue}
-          onChange={(date) => field.onChange(date?.isValid() ? date.format('YYYY-MM-DD') : defaultValue)}
+          value={field.value}
+          onChange={(date) => {
+            const formattedDate = date?.isValid() ? date.format('YYYY-MM-DD') : null;
+            field.onChange(formattedDate);
+          }}
           slotProps={{
             textField: {
               helperText: fieldState.error ? fieldState.error.message : null,

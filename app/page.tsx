@@ -138,8 +138,7 @@ const Page = () => {
             rules={{ required: 'You must verify your age to proceed' }}
           />
         </Grid>
-        {isCheckboxChecked
-        && (
+        {isCheckboxChecked && (
           <Grid item xs={6}>
             <DateInput
               name="deliveryDate"
