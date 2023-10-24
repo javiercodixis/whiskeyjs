@@ -7,9 +7,8 @@ import dayjs from 'dayjs';
 type DateInputProps = Omit<DatePickerProps<dayjs.Dayjs>, 'value' | 'onChange'> & {
   name: string;
   control: Control;
-  label?: string;
   rules?: object;
-  defaultValue?: string | null;
+  defaultValue?: string;
 };
 
 const DateInput = ({
@@ -17,7 +16,7 @@ const DateInput = ({
   control,
   label,
   rules = {},
-  defaultValue = null,
+  defaultValue,
   ...rest
 }: DateInputProps) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -29,7 +28,7 @@ const DateInput = ({
       render={({ field, fieldState }) => (
         <DatePicker
           label={label}
-          value={field.value}
+          value={field.value ?? null}
           onChange={(date) => {
             const formattedDate = date?.isValid() ? date.format('YYYY-MM-DD') : null;
             field.onChange(formattedDate);
