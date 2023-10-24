@@ -7,10 +7,11 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import BooleanInput from '@/components/BooleanInput';
+import DateInput from '@/components/DateInput';
 import NumberInput from '@/components/NumberInput';
 import SelectInput from '@/components/SelectInput';
 import TextInput from '@/components/TextInput';
-import { FormValues, Options } from '@/types';
+import { Options } from '@/types';
 
 const whiskeyOptions: Options = [
   { value: 'whiskey1', label: 'Whiskey 1' },
@@ -19,7 +20,9 @@ const whiskeyOptions: Options = [
 ];
 
 const Page = () => {
-  const { handleSubmit, control } = useForm<FormValues>();
+  const { handleSubmit, control, watch } = useForm();
+
+  const isCheckboxChecked = watch('ageVerification', false);
 
   const noLeadingZeros = (value: string): boolean | string => !/^0[0-9]+/.test(value) || 'Invalid number format';
 
@@ -41,7 +44,7 @@ const Page = () => {
     return pattern.test(value) || 'Phone number should only contain digits';
   };
 
-  const onSubmit = (data: FormValues): void => {
+  const onSubmit = (data: any): void => { // eslint-disable-line
     console.log(data); // eslint-disable-line no-console
   };
 
@@ -135,6 +138,16 @@ const Page = () => {
             rules={{ required: 'You must verify your age to proceed' }}
           />
         </Grid>
+        {isCheckboxChecked && (
+          <Grid item xs={6}>
+            <DateInput
+              name="deliveryDate"
+              control={control}
+              label="Date of Delivery"
+              rules={{ required: 'A delivery date is required' }}
+            />
+          </Grid>
+        )}
         <Grid item xs={12}>
           <TextInput
             name="address"

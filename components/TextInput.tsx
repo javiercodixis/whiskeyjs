@@ -11,7 +11,7 @@ type TextInputProps = TextFieldProps & {
 const TextInput = ({
   name,
   control,
-  rules,
+  rules = {},
   ...rest
 }: TextInputProps) => (
   <Controller

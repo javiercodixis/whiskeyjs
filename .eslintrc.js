@@ -26,5 +26,6 @@ module.exports = {
     'react/jsx-indent': ['warn', 2, { indentLogicalExpressions: true }],
     'react/jsx-props-no-spreading': 'off',
     'react/no-danger': 'off',
+    'react/require-default-props': ['warn', { functions: 'ignore' }],
   },
 };

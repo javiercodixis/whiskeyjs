@@ -19,7 +19,7 @@ const SelectInput = ({
   control,
   label,
   options,
-  rules,
+  rules = {},
   ...rest
 }: SelectInputProps) => (
 
@@ -47,7 +47,6 @@ const SelectInput = ({
         </Select>
         {fieldState.error
           && <FormHelperText>{fieldState.error.message}</FormHelperText>}
-        ;
       </FormControl>
     )}
   />
