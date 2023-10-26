@@ -36,14 +36,14 @@ const AutocompleteInput = <T extends object>({
         {...field}
         {...rest}
         options={options}
-        getOptionLabel={getOptionLabel}
+        getOptionLabel={getOptionLabel} // it should be define here not received as property
         isOptionEqualToValue={isOptionEqualToValue}
         renderInput={(params) => (
           <>
             <TextField
               {...params}
               {...textFieldProps}
-              error={!!fieldState.error}
+              error={!!fieldState.error} // I have already accessed to FormHelperText
             />
             {fieldState.error && <FormHelperText error>{fieldState.error.message}</FormHelperText>}
           </>

@@ -160,7 +160,7 @@ const Page = () => {
                 name="autocompleteField"
                 control={control}
                 options={citiesOptions}
-                getOptionLabel={(option) => `${option.name} - ${option.country}`}
+                getOptionLabel={(option) => `${option.name} - ${option.country}`} // we dont need, it should be inside the component
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 rules={{ required: 'To select a City is required' }}
               />
