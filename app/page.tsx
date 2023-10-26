@@ -11,12 +11,19 @@ import DateInput from '@/components/DateInput';
 import NumberInput from '@/components/NumberInput';
 import SelectInput from '@/components/SelectInput';
 import TextInput from '@/components/TextInput';
-import { Options } from '@/types';
+import { City, Cities, Options } from '@/types';
+import AutocompleteInput from '@/components/AutocompleteInput';
 
 const whiskeyOptions: Options = [
   { value: 'whiskey1', label: 'Whiskey 1' },
   { value: 'whiskey2', label: 'Whiskey 2' },
   { value: 'whiskey3', label: 'Whiskey 3' },
+];
+
+const citiesOptions: Cities = [
+  { id: '1', name: 'Malaga', country: 'Spain' },
+  { id: '2', name: 'Sofia', country: 'Bulgaria' },
+  { id: '3', name: 'Madrid', country: 'Spain' },
 ];
 
 const Page = () => {
@@ -139,14 +146,26 @@ const Page = () => {
           />
         </Grid>
         {isCheckboxChecked && (
-          <Grid item xs={6}>
-            <DateInput
-              name="deliveryDate"
-              control={control}
-              label="Date of Delivery"
-              rules={{ required: 'A delivery date is required' }}
-            />
-          </Grid>
+          <>
+            <Grid item xs={6}>
+              <DateInput
+                name="deliveryDate"
+                control={control}
+                label="Date of Delivery"
+                rules={{ required: 'A delivery date is required' }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <AutocompleteInput<City>
+                name="autocompleteField"
+                control={control}
+                options={citiesOptions}
+                getOptionLabel={(option) => `${option.name} - ${option.country}`}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
+                rules={{ required: 'To select a City is required' }}
+              />
+            </Grid>
+          </>
         )}
         <Grid item xs={12}>
           <TextInput
