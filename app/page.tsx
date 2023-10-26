@@ -183,6 +183,7 @@ const Page = () => {
                 multiple={false}
                 instructions="Drag &apos;n&apos; drop some file here, or click to select file"
                 selectedFileMessage="Selected file:"
+                rules={{ required: 'To select a File is required' }}
               />
             </Grid>
           </>
