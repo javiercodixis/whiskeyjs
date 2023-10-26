@@ -13,6 +13,8 @@ import SelectInput from '@/components/SelectInput';
 import TextInput from '@/components/TextInput';
 import { City, Cities, Options } from '@/types';
 import AutocompleteInput from '@/components/AutocompleteInput';
+import DropzoneInput from '@/components/DropzoneInput';
+import { Accept } from 'react-dropzone';
 
 const whiskeyOptions: Options = [
   { value: 'whiskey1', label: 'Whiskey 1' },
@@ -25,6 +27,12 @@ const citiesOptions: Cities = [
   { id: '2', name: 'Sofia', country: 'Bulgaria' },
   { id: '3', name: 'Madrid', country: 'Spain' },
 ];
+
+const acceptedMimeTypes = {
+  'image/png': ['.png'],
+  'image/jpeg': ['.jpg', '.jpeg'],
+  'application/pdf': ['.pdf'],
+};
 
 const Page = () => {
   const { handleSubmit, control, watch } = useForm();
@@ -163,6 +171,18 @@ const Page = () => {
                 getOptionLabel={(option) => `${option.name} - ${option.country}`} // we dont need, it should be inside the component
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 rules={{ required: 'To select a City is required' }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <DropzoneInput
+                control={control}
+                name="paymentConfirmation"
+                accept={acceptedMimeTypes as Accept}
+                maxFileSize={5242880}
+                minFileSize={1024}
+                multiple={false}
+                instructions="Drag &apos;n&apos; drop some file here, or click to select file"
+                selectedFileMessage="Selected file:"
               />
             </Grid>
           </>
