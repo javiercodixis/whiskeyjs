@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Control, useController } from 'react-hook-form';
 import { FileRejection, useDropzone } from 'react-dropzone';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Snackbar from '@mui/material/Snackbar';
 import Image from 'next/image';
-import { Paper } from '@mui/material';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Snackbar from '@mui/material/Snackbar';
+import Typography from '@mui/material/Typography';
 
 type AcceptedFilesObject = { [mimeType: string]: string[] };
 type DropzoneInputProps = {
