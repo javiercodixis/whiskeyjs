@@ -13,8 +13,7 @@ import SelectInput from '@/components/SelectInput';
 import TextInput from '@/components/TextInput';
 import { City, Cities, Options } from '@/types';
 import AutocompleteInput from '@/components/AutocompleteInput';
-import DropzoneInput from '@/components/DropzoneInput';
-import { Accept } from 'react-dropzone';
+import FileInput from '@/components/FileInput';
 
 const whiskeyOptions: Options = [
   { value: 'whiskey1', label: 'Whiskey 1' },
@@ -174,12 +173,12 @@ const Page = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <DropzoneInput
+              <FileInput
                 control={control}
                 name="paymentConfirmation"
-                accept={acceptedMimeTypes as Accept}
-                maxFileSize={5242880}
-                minFileSize={1024}
+                accept={acceptedMimeTypes}
+                maxSize={5242880}
+                minSize={1024}
                 multiple={false}
                 instructions="Drag &apos;n&apos; drop some file here, or click to select file"
                 selectedFileMessage="Selected file:"
