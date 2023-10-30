@@ -27,13 +27,14 @@ const FileInput = ({
       control={control}
       rules={rules}
       render={({ field: { onChange }, fieldState: { error } }) => {
-        const handleFileChange = (file: File | null) => {
+        const handleFileChange = (file: File | File[] | null) => {
           if (filePreview) {
             URL.revokeObjectURL(filePreview);
           }
 
-          if (file && file.type.startsWith('image/')) {
-            setFilePreview(URL.createObjectURL(file));
+          const fileObj = Array.isArray(file) ? file[0] : file;
+          if (fileObj && fileObj.type.startsWith('image/')) {
+            setFilePreview(URL.createObjectURL(fileObj));
           } else {
             setFilePreview(null);
           }
